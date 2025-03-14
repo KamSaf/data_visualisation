@@ -2,7 +2,7 @@ from math import floor, ceil
 import matplotlib.pyplot as plt
 import pandas as pd
 
-dane = pd.read_csv("../dane.csv", sep=";", decimal=",", index_col=0)
+dane = pd.read_csv("../../data/dane.csv", sep=";", decimal=",", index_col=0)
 dane["Sprzedaz calkowita"] = dane["prodA"] + dane["prodB"]
 sprzedaz = dane.drop(["prodA", "prodB"], axis=1)
 
