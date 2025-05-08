@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Quick Sigma.js Example</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sigma.js/2.4.0/sigma.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/graphology/0.25.4/graphology.umd.min.js"></script>
+</head>
+<body style="background: lightgrey">
+    <div id="container" style="width: 800px; height: 600px; background: white"></div>
+    <button onclick="filterNodes()">Filtruj A</button>
+    <button onclick="resetGraph()">Resetuj</button>
+    <script>
+        const graph = new graphology.Graph();
+        const allNodes = ["Anna", "Bartek", "Ala", "Tomek"];
+        allNodes.forEach((label, i) => {
+          graph.addNode(label, {
+            x: Math.cos(i),
+            y: Math.sin(i),
+            label: label,
+            size: 10,
+            color: "#999",
+          });
+        });
+        const renderer = new Sigma(graph, document.getElementById("container"));
+        function filterNodes() {
+          graph.forEachNode((node, attrs) => {
+            graph.setNodeAttribute(node, "hidden", !attrs.label.includes("A"));
+          });
+        }
+        function resetGraph() {
+          graph.forEachNode((node) => {
+            graph.setNodeAttribute(node, "hidden", false);
+          });
+        }
+        
+    </script>
+    </body>
+</html>

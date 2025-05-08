@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Quick Sigma.js Example</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sigma.js/2.4.0/sigma.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/graphology/0.25.4/graphology.umd.min.js"></script>
+  </head>
+  <body style="background: lightgrey">
+    <div id="container" style="width: 800px; height: 600px; background: white"></div>
+    <button onclick="addNode()">Dodaj wierzchołek</button>
+    <script>
+      const graph = new graphology.Graph();
+      let counter = 1;
+      graph.addNode("center", {
+        x: 0,
+        y: 0,
+        label: "Środek",
+        size: 10,
+        color: "#555",
+      });
+      const renderer = new Sigma(graph, document.getElementById("container"));
+      function addNode() {
+        const id = "node" + counter;
+        graph.addNode(id, {
+          x: Math.cos(counter) * 2,
+          y: Math.sin(counter) * 2,
+          label: "Wierzchołek " + counter,
+          size: 8,
+          color: "#0088cc",
+        });
+        graph.addEdge("center", id);
+        counter++;
+      }
+      
+    </script>
+  </body>
+</html>

@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Quick Sigma.js Example</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sigma.js/2.4.0/sigma.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/graphology/0.25.4/graphology.umd.min.js"></script>
+</head>
+<body style="background: lightgrey">
+    <div id="container" style="width: 800px; height: 600px; background: white"></div>
+    <p id="label-output"></p>
+    <script>
+        const graph = new graphology.Graph();
+        graph.addNode("a", { x: 0, y: 0, label: "Alpha", size: 10, color: "#f55" });
+        graph.addNode("b", { x: 1, y: 0, label: "Beta", size: 10, color: "#5f5" });
+        const renderer = new sigma.Sigma(graph, document.getElementById("container"));
+        renderer.on("enterNode", ({ node }) => {
+          const label = graph.getNodeAttribute(node, "label");
+          document.getElementById(
+            "label-output"
+          ).textContent = `Podświetlono: ${label}`;
+        });
+        renderer.on("leaveNode", () => {
+          document.getElementById("label-output").textContent = "";
+        });
+        
+    </script>
+    </body>
+</html>

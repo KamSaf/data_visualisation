@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Quick Sigma.js Example</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sigma.js/2.4.0/sigma.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/graphology/0.25.4/graphology.umd.min.js"></script>
+  </head>
+  <body style="background: lightgrey">
+    <div id="container" style="width: 800px; height: 600px; background: white"></div>
+    <script>
+      const graph = new graphology.Graph();
+      graph.addNode("a", { x: 0, y: 0, label: "A", size: 10, color: "#f00" });
+      graph.addNode("b", { x: 1, y: 0, label: "B", size: 10, color: "#0f0" });
+      graph.addNode("c", { x: 0.5, y: 1, label: "C", size: 10, color: "#00f" });
+      graph.addEdge("a", "b");
+      graph.addEdge("a", "c");
+      const sigmaInstance = new Sigma(graph, document.getElementById("container"));
+    </script>
+  </body>
+</html>
